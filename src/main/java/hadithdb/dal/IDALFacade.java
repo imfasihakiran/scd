@@ -10,10 +10,8 @@ import hadithdb.dto.HadithDTO;
 import hadithdb.dto.TranslationDTO;
 
 public interface IDALFacade extends ICollectionDAO, IBookDAO, IChapterDAO, IHadithDAO,
-ITranslationDAO, IGlossaryDAO, IDeletionImpactDAO{
-    DeletionImpactDTO impactOfCollection(int id);
-    DeletionImpactDTO impactOfBook(int id);
-    DeletionImpactDTO impactOfChapter(int id);
-    DeletionImpactDTO impactOfHadith(int id);   
+ITranslationDAO, IGlossaryDAO, IDeletionImpactDAO{ 
     
+	DeletionImpactDTO getBookDeletionImpact(int bookId);
+	DeletionImpactDTO getChapterDeletionImpact(int chapterId);
 }
