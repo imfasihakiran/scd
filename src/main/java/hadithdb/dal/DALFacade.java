@@ -8,6 +8,7 @@ import hadithdb.dto.CollectionDTO;
 import hadithdb.dto.DeletionImpactDTO;
 import hadithdb.dto.HadithDTO;
 import hadithdb.dto.TranslationDTO;
+import hadithdb.dto.GlossaryEntryDTO;
 
 public class DALFacade implements IDALFacade 
 {
@@ -50,6 +51,7 @@ public class DALFacade implements IDALFacade
         );
     }
 
+    //Collections
     @Override
     public int insertCollection(CollectionDTO dto) 
     {
@@ -86,6 +88,7 @@ public class DALFacade implements IDALFacade
         return collectionDAO.collectionExists(id);
     }
 
+    //Book
     @Override
     public int insertBook(BookDTO book) 
     {
@@ -128,6 +131,7 @@ public class DALFacade implements IDALFacade
         return impactDAO.impactOfBook(bookId);
     }
 
+    //Chapter
     @Override
     public int insertChapter(ChapterDTO chapter) 
     {
@@ -170,6 +174,7 @@ public class DALFacade implements IDALFacade
         return chapterDAO.chapterExists(id);
     }
 
+    //Deletion Impact
     @Override
     public DeletionImpactDTO getChapterDeletionImpact(int chapterId) 
     {
@@ -199,6 +204,8 @@ public class DALFacade implements IDALFacade
     {
         return impactDAO.impactOfHadith(id);
     }
+    
+    //Hadith
 
     @Override
     public int insertHadithWithTranslation(HadithDTO hadith, TranslationDTO firstTranslation) 
@@ -241,7 +248,8 @@ public class DALFacade implements IDALFacade
     {
         return hadithDAO.hadithNumberExists(chaperId, hadithNumber, excludeId);
     }
-
+    
+    // Translation
     @Override
     public int insertTranslation(TranslationDTO dto) 
     {
@@ -261,9 +269,9 @@ public class DALFacade implements IDALFacade
     }
 
     @Override
-    public List<TranslationDTO> getTranslationsByHadithId(int hadithId) 
-    {
-        return translationDAO.getTranslationsByHadithId(hadithId);
+
+    public List<TranslationDTO> getTranslationByHadithId(int hadithId) {
+        return translationDAO.getTranslationByHadithId(hadithId);
     }
 
     @Override
@@ -282,5 +290,43 @@ public class DALFacade implements IDALFacade
     public int countTranslation(int hadithId) 
     {
         return translationDAO.countTranslation(hadithId);
+    }
+    
+    // Glossary
+
+    @Override
+    public int insertGlossaryEntry(GlossaryEntryDTO dto) 
+    {
+        return glossaryDAO.insertGlossaryEntry(dto);
+    }
+
+    @Override
+    public boolean updateGlossaryEntry(GlossaryEntryDTO dto) 
+    {
+        return glossaryDAO.updateGlossaryEntry(dto);
+    }
+
+    @Override
+    public GlossaryEntryDTO getGlossaryEntryById(int id) 
+    {
+        return glossaryDAO.getGlossaryEntryById(id);
+    }
+
+    @Override
+    public List<GlossaryEntryDTO> getGlossaryEntriesByBookId(int bookId) 
+    {
+        return glossaryDAO.getGlossaryEntriesByBookId(bookId);
+    }
+
+    @Override
+    public List<GlossaryEntryDTO> getGlossaryEntriesByChapterId(int chapterId) 
+    {
+        return glossaryDAO.getGlossaryEntriesByChapterId(chapterId);
+    }
+
+    @Override
+    public boolean deleteGlossaryEntry(int id) 
+    {
+        return glossaryDAO.deleteGlossaryEntry(id);
     }
 }

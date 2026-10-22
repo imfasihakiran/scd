@@ -16,7 +16,7 @@ public class Main
     public static void main(String[] args) 
     {
         SwingUtilities.invokeLater(() -> {
-            IDAOFactory factory = AbstractDAOFactory.getDAOFactory();
+            IDAOFactory factory = AbstractDAOFactory.getInstance();
             IDALFacade dal = new DALFacade(
                 factory.createCollectionDAO(),
                 factory.createBookDAO(),
@@ -32,7 +32,7 @@ public class Main
             ChapterBO chapterBO = new ChapterBO(dal);
 
             MainWindow window = new MainWindow(collectionBO, bookBO, chapterBO);
-            window.setVisible(true);
+            window.showCollections();
         });
     }
 }
